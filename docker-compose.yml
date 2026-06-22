@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: src/CleanArchitecture.Api/Dockerfile
+    container_name: clean-arch-api
+    ports:
+      - "8080:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__Default=Data Source=/app/data/app.db
+      - Database__Provider=Sqlite
+      - Jwt__Secret=REPLACE-WITH-A-SECURE-32-PLUS-CHAR-RANDOM-SECRET
+      - Jwt__Issuer=CleanArchitecture.Api
+      - Jwt__Audience=CleanArchitecture.Clients
+      - Jwt__ExpiryMinutes=60
+    volumes:
+      - sqlite-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  sqlite-data:

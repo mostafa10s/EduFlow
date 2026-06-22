@@ -1,0 +1,29 @@
+# .NET / C#
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.pdb
+*.dll
+!src/**/bin/.gitkeep
+
+# Test results / coverage
+TestResults/
+coverage*/
+*.coverage
+*.coveragexml
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local DBs
+*.db
+*.db-shm
+*.db-wal
