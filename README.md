@@ -1,3 +1,12 @@
+```
+ _____ _                     ___           _     
+/  __ \ |                   / _ \         | |    
+| /  \/ | ___  __ _ _ __   / /_\ \_ __ ___| |__  
+| |   | |/ _ \/ _` | '_ \  |  _  | '__/ __| '_ \ 
+| \__/\ |  __/ (_| | | | | | | | | | | (__| | | |
+ \____/_|\___|\__,_|_| |_| \_| |_/_|  \___|_| |_|
+```
+
 # .NET 8 Clean Architecture Starter
 
 A production-shaped reference implementation of **Clean Architecture** in .NET 8 — split into four projects (Domain, Application, Infrastructure, Api) with xUnit tests, JWT auth, Swagger, Docker, and CI.
