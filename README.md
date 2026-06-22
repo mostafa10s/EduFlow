@@ -207,6 +207,18 @@ dotnet test --collect:"XPlat Code Coverage"
 
 ---
 
+## 📐 Architecture
+
+See [docs/architecture.md](docs/architecture.md) for the layer diagram, dependency-direction rules, and the request-flow walkthrough.
+
+---
+
+## 📸 Sample API output
+
+See [docs/sample-output.md](docs/sample-output.md) for real `curl` captures — including what a stock-violation error response looks like.
+
+---
+
 ## 📚 Further reading
 
 - [Clean Architecture — Robert C. Martin](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)

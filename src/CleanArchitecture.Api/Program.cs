@@ -79,7 +79,9 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.Migrate();
+    // For the starter we use EnsureCreated (zero-config). For production swap to
+    // db.Database.Migrate() with `dotnet ef migrations add ...`.
+    db.Database.EnsureCreated();
     DbSeeder.Seed(db);
 }
 
