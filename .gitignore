@@ -1,3 +1,4 @@
+
 # .NET / C#
 bin/
 obj/
@@ -27,3 +28,27 @@ Thumbs.db
 *.db
 *.db-shm
 *.db-wal
+*.mdf
+*.ldf
+
+# Angular / Node.js
+node_modules/
+dist/
+.angular/
+npm-debug.log*
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Secrets and credentials
+secrets.json
+appsettings.Development.json
+
+# Logs
+*.log
+
+# Build artifacts
+publish/
+artifacts/
