@@ -1,6 +1,4 @@
-using CleanArchitecture.Application.Interfaces;
-using CleanArchitecture.Application.Services;
-using CleanArchitecture.Domain.Entities;
+
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,9 +14,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        services.AddScoped<IProductService, ProductService>();
-        services.AddScoped<ICustomerService, CustomerService>();
-        services.AddScoped<IOrderService, OrderService>();
+  
 
         services.AddValidatorsFromAssemblyContaining<ApplicationAssemblyMarker>();
 

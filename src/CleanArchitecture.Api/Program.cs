@@ -75,15 +75,6 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
-// Auto-migrate + seed on startup (fine for dev; in production use a separate migration step)
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    // For the starter we use EnsureCreated (zero-config). For production swap to
-    // db.Database.Migrate() with `dotnet ef migrations add ...`.
-    db.Database.EnsureCreated();
-    DbSeeder.Seed(db);
-}
 
 app.UseSerilogRequestLogging();
 
