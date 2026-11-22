@@ -4,5 +4,8 @@ namespace CleanArchitecture.Application.Interfaces;
 
 public interface ITokenService
 {
-    string GenerateToken(string userId, string email, IEnumerable<string> roles);
+    Task<string> GenerateTokenAsync(
+           string userId,
+           string email,
+           IList<string> roles);
 }

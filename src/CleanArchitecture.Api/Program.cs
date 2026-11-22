@@ -2,8 +2,10 @@ using CleanArchitecture.Application;
 using CleanArchitecture.Infrastructure;
 using CleanArchitecture.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -51,25 +53,47 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-// JWT auth
+// JWT Authentication
 var jwt = builder.Configuration.GetSection("Jwt");
-var secret = jwt["Secret"] ?? throw new InvalidOperationException("Jwt:Secret not configured.");
 
-builder.Services.AddAuthentication("Bearer")
+var issuer = jwt["Issuer"]
+    ?? throw new InvalidOperationException("Jwt:Issuer not configured.");
+
+var audience = jwt["Audience"]
+    ?? throw new InvalidOperationException("Jwt:Audience not configured.");
+
+var secret = jwt["Secret"]
+    ?? throw new InvalidOperationException("Jwt:Secret not configured.");
+
+builder.Services
+    .AddAuthentication(options =>
+    {
+        options.DefaultAuthenticateScheme = "Bearer";
+        options.DefaultChallengeScheme = "Bearer";
+    })
     .AddJwtBearer("Bearer", options =>
     {
-        options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+        options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer = jwt["Issuer"],
-            ValidAudience = jwt["Audience"],
-            IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(
-                System.Text.Encoding.UTF8.GetBytes(secret))
+
+            ValidIssuer = issuer,
+            ValidAudience = audience,
+
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(secret)),
+
+            ClockSkew = TimeSpan.Zero
         };
     });
+
+builder.Services.AddAuthorization();
+
+
+
 
 builder.Services.AddAuthorization();
 
