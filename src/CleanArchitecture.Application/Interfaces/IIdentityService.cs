@@ -11,6 +11,7 @@ namespace CleanArchitecture.Application.Interfaces
         Task<string> CreateUserAsync(
             string fullName,
             string email,
+            string phoneNumber,
             string password,
             CancellationToken cancellationToken);
     }
