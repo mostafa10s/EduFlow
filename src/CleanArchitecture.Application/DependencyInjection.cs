@@ -4,10 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Application;
 
-/// <summary>
-/// Marker type used to anchor FluentValidation assembly scanning
-/// to this project, independent of static class names.
-/// </summary>
 public sealed class ApplicationAssemblyMarker { }
 
 public static class DependencyInjection
@@ -17,7 +13,15 @@ public static class DependencyInjection
   
 
         services.AddValidatorsFromAssemblyContaining<ApplicationAssemblyMarker>();
+        services.AddMediatR(configuration =>
+        {
+            configuration.RegisterServicesFromAssemblyContaining<ApplicationAssemblyMarker>();
+        });
+
+        services.AddValidatorsFromAssemblyContaining<ApplicationAssemblyMarker>();
 
         return services;
+
+        
     }
 }
