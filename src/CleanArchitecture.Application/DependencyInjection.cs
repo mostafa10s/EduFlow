@@ -1,5 +1,7 @@
 
+using CleanArchitecture.Application.Common.Behaviors;
 using FluentValidation;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Application;
@@ -19,6 +21,9 @@ public static class DependencyInjection
         });
 
         services.AddValidatorsFromAssemblyContaining<ApplicationAssemblyMarker>();
+        services.AddTransient(
+    typeof(IPipelineBehavior<,>),
+    typeof(ValidationBehavior<,>));
 
         return services;
 

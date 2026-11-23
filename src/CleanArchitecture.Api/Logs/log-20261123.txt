@@ -1,2 +1,15 @@
 2026-11-23 11:35:24.593 +02:00 [INF] HTTP GET /swagger/index.html responded 200 in 144.8867 ms
 2026-11-23 11:35:24.746 +02:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 4.8075 ms
+2026-11-23 11:50:28.442 +02:00 [INF] HTTP GET /swagger/index.html responded 200 in 76.0565 ms
+2026-11-23 11:50:28.580 +02:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 8.8427 ms
+2026-11-23 11:54:05.198 +02:00 [INF] HTTP GET /swagger/index.html responded 200 in 123.1089 ms
+2026-11-23 11:54:05.450 +02:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 5.1270 ms
+2026-11-23 11:54:57.611 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 1305.9733 ms
+2026-11-23 12:22:37.169 +02:00 [INF] HTTP GET /swagger/index.html responded 200 in 94.9064 ms
+2026-11-23 12:22:37.327 +02:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 4.5426 ms
+2026-11-23 12:36:05.941 +02:00 [INF] HTTP GET /swagger/index.html responded 200 in 74.1108 ms
+2026-11-23 12:36:06.075 +02:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 5.2865 ms
+2026-11-23 12:39:27.627 +02:00 [INF] HTTP GET /swagger/index.html responded 200 in 78.1696 ms
+2026-11-23 12:39:27.761 +02:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 4.9294 ms
+2026-11-23 12:54:48.837 +02:00 [INF] HTTP GET /swagger/index.html responded 200 in 120.3437 ms
+2026-11-23 12:54:48.964 +02:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 6.0771 ms

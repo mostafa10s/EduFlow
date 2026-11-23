@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.Common.Exceptions
 {
-    internal class NotFoundException
+    public class NotFoundException : ApplicationException
     {
+        public NotFoundException(string message)
+            : base(message)
+        {
+        }
     }
 }
