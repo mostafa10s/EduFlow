@@ -1,6 +1,5 @@
 ﻿
 using CleanArchitecture.Application.Interfaces;
-
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -21,8 +20,17 @@ public class JwtTokenService : ITokenService
     public Task<string> GenerateTokenAsync(
         string userId,
         string email,
-        IList<string> roles)
+        IList<string> roles,
+        long? tenantId = null,
+        string? tenantRole = null)
     {
+        // Tenant ID and Tenant Role must be provided together.
+        if (tenantId.HasValue != !string.IsNullOrWhiteSpace(tenantRole))
+        {
+            throw new ArgumentException(
+                "Tenant ID and Tenant Role must be provided together.");
+        }
+
         var claims = new List<Claim>
         {
             new(JwtRegisteredClaimNames.Sub, userId),
@@ -30,8 +38,22 @@ public class JwtTokenService : ITokenService
             new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
 
+        // Global roles (e.g. SuperAdmin).
         claims.AddRange(
-            roles.Select(role => new Claim(ClaimTypes.Role, role)));
+            roles.Select(role =>
+                new Claim(ClaimTypes.Role, role)));
+
+        // Tenant context.
+        if (tenantId.HasValue)
+        {
+            claims.Add(new Claim(
+                "tenant_id",
+                tenantId.Value.ToString()));
+
+            claims.Add(new Claim(
+                "tenant_role",
+                tenantRole!));
+        }
 
         var key = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(_jwtSettings.Secret));

@@ -70,6 +70,7 @@ public class IdentityService : IIdentityService
 
             await transaction.CommitAsync(cancellationToken);
 
+
             return user.Id;
         }
         catch
@@ -77,5 +78,30 @@ public class IdentityService : IIdentityService
             await transaction.RollbackAsync(CancellationToken.None);
             throw;
         }
+
+    }
+    public async Task<string?> GetTenantRoleAsync(
+    string userId,
+    long tenantId,
+    CancellationToken cancellationToken)
+    {
+        var membership = await _context.TenantMembers
+            .AsNoTracking()
+            .FirstOrDefaultAsync(
+                x => x.UserId == userId
+                     && x.TenantId == tenantId
+                     && x.IsActive,
+                cancellationToken);
+
+        return membership?.Role.ToString();
+    }
+    public async Task<IList<string>> GetUserRolesAsync(string userId)
+    {
+        var user = await _userManager.FindByIdAsync(userId);
+
+        if (user is null)
+            throw new NotFoundException("User not found.");
+
+        return await _userManager.GetRolesAsync(user);
     }
 }

@@ -25,4 +25,18 @@ public class CurrentUserService : ICurrentUserService
 
     public bool IsAuthenticated =>
         User?.Identity?.IsAuthenticated ?? false;
+    public long? TenantId
+    {
+        get
+        {
+            var tenantId = User?.FindFirstValue("tenant_id");
+
+            return long.TryParse(tenantId, out var id)
+                ? id
+                : null;
+        }
+    }
+
+    public string? TenantRole =>
+        User?.FindFirstValue("tenant_role");
 }

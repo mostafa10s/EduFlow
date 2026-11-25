@@ -1,0 +1,8 @@
+2026-11-25 11:50:01.216 +02:00 [INF] HTTP GET /swagger/index.html responded 200 in 112.0216 ms
+2026-11-25 11:50:01.393 +02:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 5.4228 ms
+2026-11-25 12:01:37.743 +02:00 [INF] HTTP GET /swagger/index.html responded 200 in 89.3153 ms
+2026-11-25 12:01:37.872 +02:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 4.9991 ms
+2026-11-25 12:11:03.826 +02:00 [INF] HTTP GET /swagger/index.html responded 200 in 75.6295 ms
+2026-11-25 12:11:03.961 +02:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 4.7177 ms
+2026-11-25 12:17:45.590 +02:00 [INF] HTTP GET /swagger/index.html responded 200 in 114.3216 ms
+2026-11-25 12:17:45.684 +02:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 4.7371 ms

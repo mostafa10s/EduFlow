@@ -14,5 +14,11 @@ namespace CleanArchitecture.Application.Interfaces
             string phoneNumber,
             string password,
             CancellationToken cancellationToken);
+
+        Task<string?> GetTenantRoleAsync(
+    string userId,
+    long tenantId,
+    CancellationToken cancellationToken);
+        Task<IList<string>> GetUserRolesAsync(string userId);
     }
 }
