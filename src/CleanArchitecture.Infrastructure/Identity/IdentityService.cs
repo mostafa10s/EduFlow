@@ -95,13 +95,34 @@ public class IdentityService : IIdentityService
 
         return membership?.Role.ToString();
     }
-    public async Task<IList<string>> GetUserRolesAsync(string userId)
+    public async Task<IList<string>> GetUserRolesAsync(
+       string userId,
+       CancellationToken cancellationToken)
     {
+        cancellationToken.ThrowIfCancellationRequested();
+
         var user = await _userManager.FindByIdAsync(userId);
 
         if (user is null)
             throw new NotFoundException("User not found.");
 
         return await _userManager.GetRolesAsync(user);
+    }
+    public async Task<bool> ValidateCredentialsAsync(
+    string email,
+    string password)
+    {
+        var user = await _userManager.FindByEmailAsync(email);
+
+        if (user is null)
+            return false;
+
+        return await _userManager.CheckPasswordAsync(user, password);
+    }
+    public async Task<string?> GetUserIdByEmailAsync(string email)
+    {
+        var user = await _userManager.FindByEmailAsync(email);
+
+        return user?.Id;
     }
 }

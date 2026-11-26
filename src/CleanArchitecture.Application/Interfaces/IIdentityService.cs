@@ -19,6 +19,14 @@ namespace CleanArchitecture.Application.Interfaces
     string userId,
     long tenantId,
     CancellationToken cancellationToken);
-        Task<IList<string>> GetUserRolesAsync(string userId);
+        Task<IList<string>> GetUserRolesAsync(
+            string userId,
+            CancellationToken cancellationToken);
+        Task<bool> ValidateCredentialsAsync(
+    string email,
+    string password);
+        Task<string?> GetUserIdByEmailAsync(string email);
+
     }
+
 }

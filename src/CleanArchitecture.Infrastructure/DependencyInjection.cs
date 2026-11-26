@@ -35,7 +35,8 @@ public static class DependencyInjection
         services.AddHttpContextAccessor();
         services.AddScoped<ICurrentUserService, CurrentUserService>();
         services.AddScoped<IIdentityService, IdentityService>();
-
+        services.AddScoped<ITenantService, TenantService>();
+        services.AddScoped<ISlugService, SlugService>();
 
         return services;
     }
